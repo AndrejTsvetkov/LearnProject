@@ -1,3 +1,4 @@
+#3 lecture, task E
 string = "Мама мыла раму мыла мама папа привет"
 
 print(string.lower().split())

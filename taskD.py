@@ -1,3 +1,4 @@
+#3 lecture, task D
 str ="Hello 123 ** hello мама"
 
 dict = {}
