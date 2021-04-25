@@ -12,6 +12,7 @@ def project_stats(path, extensions):
     из множества ``extensions``.
     """
     filenames = iter_filenames(path)
+    #print(filenames)
     filenames_with_extensions = list(with_extensions(extensions, filenames))
     #print(filenames_with_extensions)
     return functools.reduce(lambda x, y: x + y, list(total_number_of_lines(filenames_with_extensions)))
@@ -36,9 +37,13 @@ def iter_filenames(path):
     Итератор по именам файлов в дереве.
     """
     # get filenames of all subdirectories
-    filenames = (os.path.join(root, name) for root, dir, file in os.walk(path) for name in file)
+    list_ = list(os.walk(path))
+    #filenames = (os.path.join(root, name) for root, dir, file in os.walk(path) for name in file)
+    list1 = list(map(lambda x: x[0], list_))
+    list2 = list(map(lambda x: x[-1], list_))
+    list3 = list(map(lambda x, y: list(map(lambda z: os.path.join(x, z), y)), list1, list2))
     # make a flat list out of a list of lists
-    #filenames = list(itertools.chain.from_iterable(filenames_2d))
+    filenames = list(itertools.chain.from_iterable(list3))
     return filenames
 
 
@@ -66,11 +71,15 @@ if __name__ == '__main__':
         sys.exit(1)
 
     project_path = sys.argv[1]
-    print(project_path)
     print(project_stats(project_path, {'.py'}))
 
-    #test_path = "C:/Users/cvetk/PycharmProjects/pythonProject"
-    #print(project_stats(test_path, {'.py', '.txt'}))
+    # list_ = [('1', '2', ['a', 'b', 'c']), ('3', '4', ['d', 'e', 'f'])]
+    # list2 = list(map(lambda x: x[-1], list_))
+    # list1 = list(map(lambda x: x[0], list_))
+    # print(list1)
+    # print(list2)
+    # list3 = list(map(lambda x, y: list(map(lambda z: x+z, y)), list1, list2))
+    # print(list3)
 
 
 
