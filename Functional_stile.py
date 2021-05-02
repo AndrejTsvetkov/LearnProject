@@ -29,7 +29,7 @@ def number_of_lines(filename):
     """
     Вернуть число строк в файле.
     """
-    return sum(1 for line in open(filename, 'r', encoding="utf8"))
+    return sum(map(lambda x: 1, open(filename, 'r', encoding="utf8")))
 
 
 def iter_filenames(path):
@@ -72,7 +72,9 @@ if __name__ == '__main__':
 
     project_path = sys.argv[1]
     print(project_stats(project_path, {'.py'}))
-
+    #t = open("C:\\Users\\cvetk\\PycharmProjects\\pythonProject\BUF.py")
+    #count = 1
+    #print(sum(map(lambda x: 1, t)))
     # list_ = [('1', '2', ['a', 'b', 'c']), ('3', '4', ['d', 'e', 'f'])]
     # list2 = list(map(lambda x: x[-1], list_))
     # list1 = list(map(lambda x: x[0], list_))
